@@ -22,9 +22,6 @@ export default function Results({ route }: Props) {
 
   return (
     <View style={styles.container}>
-      <Text style={{ fontSize: 24, borderBottomWidth: 1, borderColor: '#ccc' }}>
-        Resultat
-      </Text>
       <FlatList
         data={items}
         renderItem={(itemData) => (
@@ -47,7 +44,7 @@ export default function Results({ route }: Props) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 7,
+    flex: 1,
     alignItems: 'center',
   },
 });

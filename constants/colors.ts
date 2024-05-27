@@ -7,5 +7,7 @@ export const Colors = {
     primary700: '#0570c9',
     primary800: '#003b88',
     accent500: '#e6b30b',
+    gray200: '#ccc',
     gray700: '#221c30',
+    white: '#fff'
   };

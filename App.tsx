@@ -52,13 +52,17 @@ function Landing() {
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={{ headerTitleAlign: 'center' }}>
         <Stack.Screen
           name='Landing'
           component={Landing}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name='Results' component={Results} options={{}} />
+        <Stack.Screen
+          name='Results'
+          component={Results}
+          options={{ title: 'Resultat' }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

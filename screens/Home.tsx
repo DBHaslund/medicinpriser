@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { Colors } from '../constants/colors';
+import Button from '../components/UI/Button';
 
 type Props = BottomTabScreenProps<TabParamsList, 'Home'>;
 
@@ -17,47 +19,48 @@ export default function Home({ navigation }: Props) {
   };
 
   return (
-    <View style={styles.appContainer}>
+    <View style={styles.container}>
       <View style={styles.header}>
         <Text style={{ fontSize: 32 }}>Velkommen!</Text>
-        <Text>Indtast medicin for at søge pris</Text>
       </View>
-      <View style={styles.inputContainer}>
-        <TextInput style={styles.inputText} onChangeText={queryHandler} />
-        <Button title='    Søg    ' onPress={searchHandler} />
+      <View style={styles.content}>
+        <Text>Indtast medicin for at søge pris</Text>
+        <View style={styles.inputContainer}>
+          <TextInput style={styles.inputText} onChangeText={queryHandler} />
+          <Button onPress={searchHandler}>Søg</Button>
+        </View>
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  appContainer: {
+  container: {
     flex: 1,
     paddingTop: 50,
-    paddingHorizontal: 16,
   },
   header: {
-    flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
+    marginBottom: 128,
+  },
+  content: {
+    alignItems: 'center',
+    paddingVertical: 16,
     borderBottomWidth: 1,
-    borderColor: '#ccc',
+    borderTopWidth: 1,
+    borderColor: Colors.gray200,
   },
   inputContainer: {
-    flex: 10,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
-    borderBottomWidth: 1,
-    borderColor: '#ccc',
-    marginBottom: 8,
-    paddingHorizontal: 8,
+    marginTop: 16,
+    paddingHorizontal: 32,
+    width: '100%',
   },
   inputText: {
-    paddingHorizontal: 8,
+    marginBottom: 16,
     textAlign: 'center',
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: Colors.gray200,
     width: '70%',
   },
 });
