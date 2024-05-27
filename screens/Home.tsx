@@ -1,26 +1,19 @@
 import { useState } from 'react';
-import {
-  Button,
-  FlatList,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from 'react-native';
-import FetchDrugs from '../utils/get-drugs';
+import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 
-export default function Home() {
+import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+
+type Props = BottomTabScreenProps<TabParamsList, 'Home'>;
+
+export default function Home({ navigation }: Props) {
   const [query, setQuery] = useState('');
-  const [items, setItems] = useState<MedicationDetails[]>([]);
 
   const queryHandler = (enteredQuery: string) => {
     setQuery(enteredQuery);
   };
 
   const searchHandler = async () => {
-    const drugs = await FetchDrugs(query);
-    console.log(drugs);
-    setItems(drugs);
+    navigation.navigate('Results', { query });
   };
 
   return (
@@ -33,23 +26,6 @@ export default function Home() {
         <TextInput style={styles.inputText} onChangeText={queryHandler} />
         <Button title='    Søg    ' onPress={searchHandler} />
       </View>
-      <View style={styles.resultContainer}>
-        <Text
-          style={{ fontSize: 24, borderBottomWidth: 1, borderColor: '#ccc' }}
-        >
-          Resultat
-        </Text>
-        <FlatList
-          data={items}
-          renderItem={(itemData) => (
-            <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'space-between' }}>
-              <Text>{itemData.item.Navn}</Text>
-              <Text>{itemData.item.Firma}</Text>
-            </View>
-          )}
-          keyExtractor={(item) => item.Varenummer}
-        />
-      </View>
     </View>
   );
 }
@@ -61,14 +37,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   header: {
-    flex: 2,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     borderBottomWidth: 1,
     borderColor: '#ccc',
   },
   inputContainer: {
-    flex: 1,
+    flex: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -83,9 +59,5 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ccc',
     width: '70%',
-  },
-  resultContainer: {
-    flex: 7,
-    alignItems: 'center',
   },
 });
