@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 
-import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { Colors } from '../constants/colors';
+import { HomeProps } from '../constants/types';
 import Button from '../components/UI/Button';
 
-type Props = BottomTabScreenProps<TabParamsList, 'Home'>;
 
-export default function Home({ navigation }: Props) {
+
+export default function Home({ navigation }: HomeProps) {
   const [query, setQuery] = useState('');
 
   const queryHandler = (enteredQuery: string) => {

@@ -1,13 +1,16 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { Ionicons } from '@expo/vector-icons';
+
+import { StackParamsList, TabParamsList } from './constants/types';
 
 import Home from './screens/Home';
 import Favourites from './screens/Favourites';
 import Settings from './screens/Settings';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Results from './screens/Results';
+import MedicationDetails from './screens/MedicationDetails';
 
 const Stack = createNativeStackNavigator<StackParamsList>();
 const Tab = createBottomTabNavigator<TabParamsList>();
@@ -62,6 +65,11 @@ export default function App() {
           name='Results'
           component={Results}
           options={{ title: 'Resultat' }}
+        />
+        <Stack.Screen
+          name='MedicationDetails'
+          component={MedicationDetails}
+          options={{ title: 'Detaljer' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

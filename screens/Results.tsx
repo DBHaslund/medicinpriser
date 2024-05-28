@@ -1,42 +1,36 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native';
-import FetchDrugs from '../utils/get-drugs';
+import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
+import { FetchMeds } from '../utils/get-meds';
 import { useEffect, useState } from 'react';
 
-import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { Colors } from '../constants/colors';
+import Drug from '../components/Medications/Medication';
+import { MedicationProp, ResultsProps } from '../constants/types';
 
-type Props = NativeStackScreenProps<StackParamsList, 'Results'>;
-
-export default function Results({ route }: Props) {
-  const [items, setItems] = useState<MedicationDetails[]>([]);
+export default function Results({ route }: ResultsProps) {
+  const [items, setItems] = useState<MedicationProp[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const query = route.params.query;
 
   useEffect(() => {
     async function fetch(query: string) {
-      const drugs = await FetchDrugs(query);
-      setItems(drugs);
+      const meds = await FetchMeds(query);
+      setItems(meds);
+      setLoading(false);
     }
-
-    fetch(query)
+    fetch(query);
   }, [query]);
+
+  let loader = <ActivityIndicator size={32} color={Colors.primary500} />;
 
   return (
     <View style={styles.container}>
+      {loading && loader}
       <FlatList
         data={items}
-        renderItem={(itemData) => (
-          <View
-            style={{
-              width: '100%',
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-            }}
-          >
-            <Text>{itemData.item.Navn}</Text>
-            <Text>{itemData.item.Firma}</Text>
-          </View>
-        )}
+        renderItem={(itemData) => <Drug {...itemData.item} />}
         keyExtractor={(item) => item.Varenummer}
+        contentContainerStyle={{width: '100%'}}
       />
     </View>
   );
