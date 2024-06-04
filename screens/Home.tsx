@@ -1,11 +1,16 @@
 import { useState } from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import {
+  KeyboardAvoidingView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 
 import { Colors } from '../constants/colors';
 import { HomeProps } from '../constants/types';
 import Button from '../components/UI/Button';
-
-
 
 export default function Home({ navigation }: HomeProps) {
   const [query, setQuery] = useState('');
@@ -19,29 +24,34 @@ export default function Home({ navigation }: HomeProps) {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={{ fontSize: 32 }}>Velkommen!</Text>
-      </View>
-      <View style={styles.content}>
-        <Text>Indtast medicin for at søge pris</Text>
-        <View style={styles.inputContainer}>
-          <TextInput style={styles.inputText} onChangeText={queryHandler} />
-          <Button onPress={searchHandler}>Søg</Button>
+    <KeyboardAvoidingView behavior='padding' style={styles.screen}>
+      <ScrollView style={styles.container}>
+        <View style={styles.header}>
+          <Text style={{ fontSize: 32 }}>Velkommen!</Text>
         </View>
-      </View>
-    </View>
+        <View style={styles.content}>
+          <Text>Indtast medicin for at søge pris</Text>
+          <View style={styles.inputContainer}>
+            <TextInput style={styles.inputText} onChangeText={queryHandler} />
+            <Button onPress={searchHandler}>Søg</Button>
+          </View>
+        </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
 
 const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+  },
   container: {
     flex: 1,
     paddingTop: 50,
   },
   header: {
     alignItems: 'center',
-    marginBottom: 128,
+    marginBottom: 64,
   },
   content: {
     alignItems: 'center',
@@ -55,6 +65,7 @@ const styles = StyleSheet.create({
     marginTop: 16,
     paddingHorizontal: 32,
     width: '100%',
+    
   },
   inputText: {
     marginBottom: 16,
@@ -62,5 +73,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: Colors.gray200,
     width: '70%',
+    backgroundColor: Colors.white,
   },
 });

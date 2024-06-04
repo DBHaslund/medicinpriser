@@ -17,7 +17,12 @@ const Tab = createBottomTabNavigator<TabParamsList>();
 
 function Landing() {
   return (
-    <Tab.Navigator screenOptions={{ headerTitleAlign: 'center' }}>
+    <Tab.Navigator
+      screenOptions={{
+        headerTitleAlign: 'center',
+        tabBarHideOnKeyboard: true,
+      }}
+    >
       <Tab.Screen
         name='Home'
         component={Home}

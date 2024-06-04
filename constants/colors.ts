@@ -9,5 +9,7 @@ export const Colors = {
     accent500: '#e6b30b',
     gray200: '#ccc',
     gray700: '#221c30',
-    white: '#fff'
+    warning500: '#ff0f0f',
+    green: '#00d30b',
+    white: '#fff',
   };

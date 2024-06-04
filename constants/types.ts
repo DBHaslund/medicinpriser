@@ -1,6 +1,7 @@
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 
+
 export type MedicationProp = {
   Detaljer: string;
   Firma: string;
@@ -57,3 +58,9 @@ export type ButtonProps = {
   children: string;
   onPress: () => {};
 };
+
+export type IconItemProps = {
+  icon: any;
+  color: string;
+  description: string,
+}

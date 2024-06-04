@@ -11,6 +11,7 @@ export default function Medication({ ...item }: MedicationProp) {
   const navigation: NavigationProp<ParamListBase> = useNavigation();
 
   function detailHandler() {
+    
     const vnr = item.Varenummer;
     navigation.navigate('MedicationDetails', { vnr });
   }
