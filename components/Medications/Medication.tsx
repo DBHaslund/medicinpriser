@@ -1,19 +1,22 @@
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import {
   NavigationProp,
   ParamListBase,
   useNavigation,
 } from '@react-navigation/native';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+
 import { MedicationProp } from '../../constants/types';
 import { Colors } from '../../constants/colors';
 
-export default function Medication({ ...item }: MedicationProp) {
+export default function Medication({ onClose, ...item }: MedicationProp) {
   const navigation: NavigationProp<ParamListBase> = useNavigation();
 
   function detailHandler() {
-    
     const vnr = item.Varenummer;
     navigation.navigate('MedicationDetails', { vnr });
+    if (onClose) {
+      onClose();
+    }
   }
 
   return (

@@ -1,10 +1,11 @@
 import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
-import { FetchMeds } from '../utils/get-meds';
 import { useEffect, useState } from 'react';
 
-import { Colors } from '../constants/colors';
-import Drug from '../components/Medications/Medication';
 import { MedicationProp, ResultsProps } from '../constants/types';
+import { Colors } from '../constants/colors';
+import { FetchMeds } from '../utils/get-meds';
+
+import Medication from '../components/Medications/Medication';
 
 export default function Results({ route }: ResultsProps) {
   const [items, setItems] = useState<MedicationProp[]>([]);
@@ -28,9 +29,9 @@ export default function Results({ route }: ResultsProps) {
       {loading && loader}
       <FlatList
         data={items}
-        renderItem={(itemData) => <Drug {...itemData.item} />}
+        renderItem={(itemData) => <Medication {...itemData.item} />}
         keyExtractor={(item) => item.Varenummer}
-        contentContainerStyle={{width: '100%'}}
+        contentContainerStyle={{ width: '100%' }}
       />
     </View>
   );

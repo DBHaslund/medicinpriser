@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import {
   ActivityIndicator,
   StyleSheet,
@@ -5,18 +6,22 @@ import {
   View,
   ScrollView,
 } from 'react-native';
+
 import { MedicationProp, MedicationDetailsProps } from '../constants/types';
-import { useEffect, useState } from 'react';
-import { fetchDetails } from '../utils/get-meds';
 import { Colors } from '../constants/colors';
+import { fetchDetails } from '../utils/get-meds';
 import { capitalize } from '../utils/utils';
+
 import IconItem from '../components/IconItem';
+import Button from '../components/UI/Button';
+import SubModal from '../components/Medications/SubModal';
 
 export default function MedicationDetails({
   route,
   navigation,
 }: MedicationDetailsProps) {
   const [medication, setMedication] = useState<MedicationProp>();
+  const [modalVis, setModalVis] = useState(false);
 
   const vnr = route.params.vnr;
 
@@ -38,15 +43,20 @@ export default function MedicationDetails({
     );
   }
 
+  function subOpenHandler() {
+    setModalVis(true);
+  }
+
+  function subCloseHandler() {
+    setModalVis(false);
+  }
+
   const discDate =
     medication.UdgaaetDato &&
     new Date(+medication.UdgaaetDato.replace(/\D/g, '')).toLocaleDateString();
 
-  console.log(medication);
-
   return (
     <ScrollView style={styles.container}>
-      {/* <Text>{medication.Substitutioner}array</Text> */}
       <View style={styles.section}>
         <Text style={styles.h2}>Indikation</Text>
         <Text>{capitalize(medication.Indikation)}</Text>
@@ -98,7 +108,9 @@ export default function MedicationDetails({
           <Text>Varenummer</Text>
         </View>
         <View>
-          <Text style={styles.alignEnd}>{medication.NbsSpeciale ? medication.NbsSpeciale : 'Ingen'}</Text>
+          <Text style={styles.alignEnd}>
+            {medication.NbsSpeciale ? medication.NbsSpeciale : 'Ingen'}
+          </Text>
           <Text style={styles.alignEnd}>{medication.AtcKode}</Text>
           <Text style={styles.alignEnd}>
             {medication.TilskudKode} - {medication.TilskudTekst}
@@ -107,6 +119,17 @@ export default function MedicationDetails({
           <Text style={styles.alignEnd}>{medication.Varenummer}</Text>
         </View>
       </View>
+      {medication.Substitutioner && (
+        <View style={styles.subBox}>
+          <Button onPress={subOpenHandler}>Vis substitutioner</Button>
+          <SubModal
+            onClose={subCloseHandler}
+            visible={modalVis}
+            subs={medication.Substitutioner}
+          />
+        </View>
+      )}
+
       <View style={styles.noticeContainer}>
         {medication.TrafikAdvarsel && (
           <IconItem
@@ -143,22 +166,10 @@ const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'space-around',
   },
-  priceContainer: {
-    margin: 4,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  priceBox: {
-    width: '30%',
-    paddingHorizontal: 4,
-    borderWidth: 1,
-    borderColor: 'black',
-    justifyContent: 'center',
-    alignItems: 'flex-end',
-  },
   section: {
     backgroundColor: Colors.white,
-    margin: 4,
+    marginHorizontal: 4,
+    marginBottom: 8,
     padding: 8,
     borderRadius: 6,
     elevation: 2,
@@ -166,6 +177,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.15,
     shadowOffset: { width: 1, height: 1 },
     shadowRadius: 2,
+  },
+  subBox: {
+    width: '80%',
+    alignSelf: 'center',
+    marginVertical: 16,
   },
   fallback: {
     flex: 1,
@@ -182,5 +198,4 @@ const styles = StyleSheet.create({
   alignEnd: {
     alignSelf: 'flex-end',
   },
-  text: {},
 });

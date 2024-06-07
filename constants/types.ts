@@ -2,6 +2,7 @@ import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 
 
+
 export type MedicationProp = {
   Detaljer: string;
   Firma: string;
@@ -19,7 +20,7 @@ export type MedicationProp = {
   TilskudBeregnesAf: string;
   Udgaaet: string;
   UdgaaetDato: string;
-  Substitutioner: string;
+  Substitutioner: [];
   BilligereKombinationer: string;
   Dosering: string;
   Indikation: string;
@@ -30,6 +31,7 @@ export type MedicationProp = {
   Haandkoeb: string;
   TilskudKode: string;
   TilskudTekst: string;
+  onClose: () => void;
 };
 
 
@@ -44,7 +46,6 @@ export type StackParamsList = {
 export type ResultsProps = NativeStackScreenProps<StackParamsList, 'Results'>;
 export type MedicationDetailsProps = NativeStackScreenProps<StackParamsList, 'MedicationDetails'>;
 
-
 export type TabParamsList = {
   Home: undefined;
   Settings: undefined;
@@ -56,11 +57,17 @@ export type HomeProps = BottomTabScreenProps<TabParamsList, 'Home'>;
 
 export type ButtonProps = {
   children: string;
-  onPress: () => {};
+  onPress: () => void;
 };
 
 export type IconItemProps = {
   icon: any;
   color: string;
   description: string,
+}
+
+export interface ModalProps {
+  onClose: () => void;
+  visible: boolean;
+  subs: MedicationProp[];
 }

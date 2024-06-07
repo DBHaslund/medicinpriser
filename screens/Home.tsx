@@ -8,8 +8,9 @@ import {
   View,
 } from 'react-native';
 
-import { Colors } from '../constants/colors';
 import { HomeProps } from '../constants/types';
+import { Colors } from '../constants/colors';
+
 import Button from '../components/UI/Button';
 
 export default function Home({ navigation }: HomeProps) {
@@ -65,7 +66,6 @@ const styles = StyleSheet.create({
     marginTop: 16,
     paddingHorizontal: 32,
     width: '100%',
-    
   },
   inputText: {
     marginBottom: 16,

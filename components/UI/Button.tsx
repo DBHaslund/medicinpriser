@@ -1,6 +1,7 @@
 import { Pressable, StyleSheet, Text } from 'react-native';
-import { Colors } from '../../constants/colors';
+
 import { ButtonProps } from '../../constants/types';
+import { Colors } from '../../constants/colors';
 
 export default function Button({ children, onPress }: ButtonProps) {
   return (
