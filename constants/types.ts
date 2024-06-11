@@ -34,9 +34,6 @@ export type MedicationProp = {
   onClose: () => void;
 };
 
-
-
-
 export type StackParamsList = {
   Landing: undefined;
   Results: { query: string };
@@ -70,4 +67,18 @@ export interface ModalProps {
   onClose: () => void;
   visible: boolean;
   subs: MedicationProp[];
+}
+
+export interface FavContextProps {
+    favMeds: MedicationProp[],
+    addFavMed: (medication: MedicationProp) => void,
+    setFavMeds: (medications: MedicationProp[]) => void,
+    updateFavMeds: (Varenummer: string, medication: MedicationProp) => void,
+    deleteFavMed: (Varenummer: string) => void,
+
+}
+
+export interface Action {
+  type: 'ADD' | 'SET' | 'UPDATE' | 'DELETE',
+  payload?: any,
 }

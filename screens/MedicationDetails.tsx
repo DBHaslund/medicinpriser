@@ -119,7 +119,7 @@ export default function MedicationDetails({
           <Text style={styles.alignEnd}>{medication.Varenummer}</Text>
         </View>
       </View>
-      {medication.Substitutioner && (
+      {medication.Substitutioner.length > 0 && (
         <View style={styles.subBox}>
           <Button onPress={subOpenHandler}>Vis substitutioner</Button>
           <SubModal
@@ -190,6 +190,7 @@ const styles = StyleSheet.create({
   },
   h2: {
     fontWeight: 'bold',
+    marginBottom: 2,
   },
   row: {
     flexDirection: 'row',
