@@ -1,4 +1,10 @@
-import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native';
+import {
+  ActivityIndicator,
+  FlatList,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import { useEffect, useState } from 'react';
 
 import { MedicationProp, ResultsProps } from '../constants/types';
@@ -27,6 +33,12 @@ export default function Results({ route }: ResultsProps) {
   return (
     <View style={styles.container}>
       {loading && loader}
+      {!loading && items.length <= 0 && (
+        <View style={styles.errorBox}>
+          <Text style={styles.errorHead}>Ingen resultater fundet.</Text>
+          <Text style={styles.errorText}>Tjek din indtastning og prøv igen. </Text>
+        </View>
+      )}
       <FlatList
         data={items}
         renderItem={(itemData) => <Medication {...itemData.item} />}
@@ -41,5 +53,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    paddingVertical: 12,
+  },
+  errorBox: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  errorHead: {
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+  errorText: {
+    fontSize: 16,
   },
 });
