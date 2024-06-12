@@ -32,6 +32,12 @@ export default function Medication({ onClose, ...item }: MedicationProp) {
         <Text>{item.Firma}</Text>
         <Text>{item.Pakning}</Text>
       </View>
+      {item.DDD && (
+        <View style={styles.priceBox}>
+          <Text>Døgnspris</Text>
+          <Text>{parseFloat(item.DDD).toFixed(2)} kr.</Text>
+        </View>
+      )} 
     </Pressable>
   );
 }
@@ -59,5 +65,9 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: Colors.gray200,
     marginBottom: 4,
+  },
+  priceBox: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 });

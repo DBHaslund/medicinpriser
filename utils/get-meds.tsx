@@ -31,16 +31,33 @@ export async function FetchMeds(query: string) {
   }
 }
 
-export async function fetchDetails(vnr: string) {
+export async function fetchDetails(vnr: string | string[]) {
   try {
-    const response = await fetch(`${detailPoint}${vnr}`, {
-      method: 'GET',
-      headers,
-    });
+    if (typeof vnr === 'string') {
+      const response = await fetch(`${detailPoint}${vnr}`, {
+        method: 'GET',
+        headers,
+      });
 
-    let json = await response.json();
+      let json = await response.json();
 
-    return json;
+      return json;
+    } else if (Array.isArray(vnr)) {
+      const list = [];
+
+      for (let i = 0; i < vnr.length; i++) {
+        const response = await fetch(`${detailPoint}${vnr[i]}`, {
+          method: 'GET',
+          headers,
+        });
+
+        let json = await response.json();
+
+        list.push(json);
+      }
+      
+      return list;
+    }
   } catch (error) {
     console.log(error);
   }

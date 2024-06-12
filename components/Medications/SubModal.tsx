@@ -1,19 +1,39 @@
 import { FlatList, Modal, StyleSheet, Text, View } from 'react-native';
 
-import { ModalProps } from '../../constants/types';
+import { MedicationProp, ModalProps } from '../../constants/types';
 import { Colors } from '../../constants/colors';
+import { fetchDetails } from '../../utils/get-meds';
 
 import Button from '../UI/Button';
 import Medication from './Medication';
+import { useEffect, useState } from 'react';
 
 export default function SubModal({ onClose, visible, subs }: ModalProps) {
+  const [vnrList, setVnrList] = useState<string[]>([]);
+  const [subList, setSubList] = useState<MedicationProp[]>([]);
+
+  useEffect(() => {
+    subs.map((sub) => setVnrList((prev) => [...prev, sub.Varenummer]));
+  }, [subs]);
+
+  useEffect(() => {
+    async function updateList() {
+      const updatedList = await fetchDetails(vnrList);
+      const sortedList = updatedList.sort((a: any, b: any) => a.DDD - b.DDD)
+      setSubList(sortedList)
+    };
+
+    updateList();
+  }, [vnrList]);
+
+  // console.log(subList);
+
   return (
     <Modal animationType='slide' visible={visible}>
       <View style={styles.container}>
         <Text style={styles.title}>Substitutioner</Text>
-
         <FlatList
-          data={subs}
+          data={subList}
           renderItem={(itemData) => (
             <Medication {...itemData.item} onClose={onClose} />
           )}
