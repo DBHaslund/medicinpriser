@@ -26,8 +26,6 @@ export default function SubModal({ onClose, visible, subs }: ModalProps) {
     updateList();
   }, [vnrList]);
 
-  // console.log(subList);
-
   return (
     <Modal animationType='slide' visible={visible}>
       <View style={styles.container}>

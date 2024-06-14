@@ -35,6 +35,7 @@ export type MedicationProp = {
 };
 
 export type StackParamsList = {
+  Home: undefined;
   Landing: undefined;
   Results: { query: string };
   MedicationDetails: { vnr: string };
@@ -50,7 +51,8 @@ export type TabParamsList = {
   Results: { query: string };
 };
 
-export type HomeProps = BottomTabScreenProps<TabParamsList, 'Home'>;
+export type HomeTabProps = BottomTabScreenProps<TabParamsList, 'Home'>;
+export type HomeStackProps = NativeStackScreenProps<StackParamsList, 'Home'>;
 
 export type ButtonProps = {
   children: string;
@@ -81,4 +83,11 @@ export interface FavContextProps {
 export interface Action {
   type: 'ADD' | 'SET' | 'UPDATE' | 'DELETE',
   payload?: any,
+}
+
+export interface IconButtonProps {
+  icon: any, 
+  size: number, 
+  color: string | undefined,
+  onPress: () => void,
 }

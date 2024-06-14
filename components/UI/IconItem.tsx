@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-import { IconItemProps } from '../constants/types';
+import { IconItemProps } from '../../constants/types';
 
 export default function IconItem({ icon, color, description }: IconItemProps) {
   return (

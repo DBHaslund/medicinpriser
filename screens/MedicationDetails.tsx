@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useLayoutEffect, useState } from 'react';
 import {
   ActivityIndicator,
   StyleSheet,
@@ -11,10 +11,12 @@ import { MedicationProp, MedicationDetailsProps } from '../constants/types';
 import { Colors } from '../constants/colors';
 import { fetchDetails } from '../utils/get-meds';
 import { capitalize } from '../utils/utils';
+import { FavMedsContext } from '../store/context/favMeds-context';
 
-import IconItem from '../components/IconItem';
+import IconItem from '../components/UI/IconItem';
 import Button from '../components/UI/Button';
 import SubModal from '../components/Medications/SubModal';
+import IconButton from '../components/UI/IconButton';
 
 export default function MedicationDetails({
   route,
@@ -22,8 +24,34 @@ export default function MedicationDetails({
 }: MedicationDetailsProps) {
   const [medication, setMedication] = useState<MedicationProp>();
   const [modalVis, setModalVis] = useState(false);
+  const [fav, setFav] = useState(false);
+
+  const favCtx = useContext(FavMedsContext);
 
   const vnr = route.params.vnr;
+
+  function favHandler() {
+    if (fav && medication) {
+      setFav(false);
+      favCtx.deleteFavMed(medication.Varenummer)
+      } else if (!fav && medication) {
+        setFav(true);
+        favCtx.addFavMed(medication);
+    }
+  }
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <IconButton
+          icon={fav ? 'heart' : 'heart-outline'}
+          color='red'
+          size={24}
+          onPress={favHandler}
+        />
+      ),
+    });
+  }, [fav]);
 
   useEffect(() => {
     async function fetch() {
@@ -42,6 +70,7 @@ export default function MedicationDetails({
       </View>
     );
   }
+  console.log(favCtx.favMeds);
 
   function subOpenHandler() {
     setModalVis(true);

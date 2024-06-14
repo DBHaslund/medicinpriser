@@ -3,7 +3,7 @@ import { Action, FavContextProps, MedicationProp } from '../../constants/types';
 
 export const FavMedsContext = createContext<FavContextProps>({
   favMeds: [],
-  addFavMed: (medication) => {},
+  addFavMed: (medication: MedicationProp) => {},
   deleteFavMed: (Varenummer) => {},
   setFavMeds: (medications) => {},
   updateFavMeds: (Varenummer, medication) => {},
