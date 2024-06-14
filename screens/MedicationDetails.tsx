@@ -30,13 +30,19 @@ export default function MedicationDetails({
 
   const vnr = route.params.vnr;
 
+  console.log('FavMeds');
+  console.log(favCtx.favMeds);
+  console.log(fav)
+  
+  
+
   function favHandler() {
     if (fav && medication) {
       setFav(false);
-      favCtx.deleteFavMed(medication.Varenummer)
-      } else if (!fav && medication) {
-        setFav(true);
-        favCtx.addFavMed(medication);
+      favCtx.deleteFavMed(medication.Varenummer);
+    } else if (!fav && medication) {
+      setFav(true);
+      favCtx.addFavMed(medication);
     }
   }
 
@@ -51,13 +57,17 @@ export default function MedicationDetails({
         />
       ),
     });
-  }, [fav]);
+  }, [favHandler, fav]);
 
   useEffect(() => {
     async function fetch() {
       const item = await fetchDetails(vnr);
       setMedication(item);
       navigation.setOptions({ title: item.Navn });
+    }
+
+    if (favCtx.favMeds.find((item) => item.Varenummer === vnr)) {
+      setFav(true);
     }
 
     fetch();
@@ -70,7 +80,6 @@ export default function MedicationDetails({
       </View>
     );
   }
-  console.log(favCtx.favMeds);
 
   function subOpenHandler() {
     setModalVis(true);
