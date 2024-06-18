@@ -1,5 +1,6 @@
 import { PropsWithChildren, createContext, useReducer } from 'react';
 import { Action, FavContextProps, MedicationProp } from '../../constants/types';
+import { deleteFav, insertFav } from '../../utils/database';
 
 export const FavMedsContext = createContext<FavContextProps>({
   favMeds: [],
@@ -12,11 +13,14 @@ export const FavMedsContext = createContext<FavContextProps>({
 function favMedsReducer(state: MedicationProp[], action: Action) {
   switch (action.type) {
     case 'ADD':
+      insertFav(action.payload.Varenummer);
       return [action.payload, ...state];
 
     case 'SET':
-      const inverted = action.payload.reverse();
-      return inverted;
+      const list = [...action.payload]
+      console.log(list);
+      
+      return list;
 
     case 'UPDATE':
       const updatableMedicationIndex = state.findIndex(
@@ -30,6 +34,7 @@ function favMedsReducer(state: MedicationProp[], action: Action) {
       return updatedMedications;
 
     case 'DELETE':
+      deleteFav(action.payload);
       return state.filter(
         (medication: MedicationProp) => medication.Varenummer !== action.payload
       );
@@ -72,8 +77,6 @@ export default function FavMedsContextProvider({
   };
 
   return (
-    <FavMedsContext.Provider value={value}>
-      {children}
-    </FavMedsContext.Provider>
+    <FavMedsContext.Provider value={value}>{children}</FavMedsContext.Provider>
   );
 }

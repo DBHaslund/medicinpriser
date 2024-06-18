@@ -8,12 +8,12 @@ import {
   View,
 } from 'react-native';
 
-import { HomeProps } from '../constants/types';
+import { HomeStackProps } from '../constants/types';
 import { Colors } from '../constants/colors';
 
 import Button from '../components/UI/Button';
 
-export default function Home({ navigation }: HomeProps) {
+export default function Home({ navigation }: HomeStackProps) {
   const [query, setQuery] = useState('');
 
   const queryHandler = (enteredQuery: string) => {

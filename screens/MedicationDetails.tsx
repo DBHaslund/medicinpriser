@@ -30,9 +30,9 @@ export default function MedicationDetails({
 
   const vnr = route.params.vnr;
 
-  console.log('FavMeds');
-  console.log(favCtx.favMeds);
-  console.log(fav)
+  // console.log('FavMeds');
+  // console.log(favCtx.favMeds);
+  // console.log(fav)
   
   
 
