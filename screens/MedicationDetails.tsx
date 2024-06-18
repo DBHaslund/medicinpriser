@@ -1,6 +1,5 @@
 import { useContext, useEffect, useLayoutEffect, useState } from 'react';
 import {
-  ActivityIndicator,
   StyleSheet,
   Text,
   View,
@@ -17,6 +16,7 @@ import IconItem from '../components/UI/IconItem';
 import Button from '../components/UI/Button';
 import SubModal from '../components/Medications/SubModal';
 import IconButton from '../components/UI/IconButton';
+import LoadingPage from '../components/UI/LoadingPage';
 
 export default function MedicationDetails({
   route,
@@ -29,12 +29,6 @@ export default function MedicationDetails({
   const favCtx = useContext(FavMedsContext);
 
   const vnr = route.params.vnr;
-
-  // console.log('FavMeds');
-  // console.log(favCtx.favMeds);
-  // console.log(fav)
-  
-  
 
   function favHandler() {
     if (fav && medication) {
@@ -75,9 +69,7 @@ export default function MedicationDetails({
 
   if (!medication) {
     return (
-      <View style={styles.fallback}>
-        <ActivityIndicator />
-      </View>
+      <LoadingPage />
     );
   }
 
@@ -220,11 +212,6 @@ const styles = StyleSheet.create({
     width: '80%',
     alignSelf: 'center',
     marginVertical: 16,
-  },
-  fallback: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   h2: {
     fontWeight: 'bold',

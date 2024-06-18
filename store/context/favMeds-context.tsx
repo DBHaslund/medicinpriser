@@ -17,9 +17,7 @@ function favMedsReducer(state: MedicationProp[], action: Action) {
       return [action.payload, ...state];
 
     case 'SET':
-      const list = [...action.payload]
-      console.log(list);
-      
+      const list = [...action.payload]    
       return list;
 
     case 'UPDATE':
