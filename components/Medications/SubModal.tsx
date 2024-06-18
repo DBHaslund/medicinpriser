@@ -19,9 +19,9 @@ export default function SubModal({ onClose, visible, subs }: ModalProps) {
   useEffect(() => {
     async function updateList() {
       const updatedList = await fetchDetails(vnrList);
-      const sortedList = updatedList.sort((a: any, b: any) => a.DDD - b.DDD)
-      setSubList(sortedList)
-    };
+      const sortedList = updatedList.sort((a: any, b: any) => a.DDD - b.DDD);
+      setSubList(sortedList);
+    }
 
     updateList();
   }, [vnrList]);

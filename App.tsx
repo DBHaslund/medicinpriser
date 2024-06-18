@@ -16,12 +16,9 @@ import Favourites from './screens/Favourites';
 import Settings from './screens/Settings';
 import Results from './screens/Results';
 import MedicationDetails from './screens/MedicationDetails';
-import FavMedsContextProvider, {
-  FavMedsContext,
-} from './store/context/favMeds-context';
-import { useContext, useEffect, useState } from 'react';
-import { fetchFavs, init } from './utils/database';
-import { fetchDetails } from './utils/get-meds';
+import FavMedsContextProvider from './store/context/favMeds-context';
+import { useEffect, useState } from 'react';
+import { init } from './utils/database';
 
 const Stack = createNativeStackNavigator<StackParamsList>();
 const Tab = createBottomTabNavigator<TabParamsList>();
@@ -72,18 +69,8 @@ function Landing() {
 
 export default function App({ navigation }: HomeStackProps) {
   const [dbInit, setDbInit] = useState(false);
-  const favCtx = useContext(FavMedsContext);
 
   useEffect(() => {
-    async function setup() {
-      const favs = await fetchFavs();
-      
-      const favVnrs = favs.map((fav: any) => fav.Varenummer);
-      const updatedList = await fetchDetails(favVnrs);
-      console.log('Function loaded');
-      favCtx.setFavMeds(updatedList);
-    }
-    setup();
     init()
       .then(async () => {
         setDbInit(true);

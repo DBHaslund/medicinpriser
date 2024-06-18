@@ -1,10 +1,5 @@
 import { useContext, useEffect, useLayoutEffect, useState } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-} from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 
 import { MedicationProp, MedicationDetailsProps } from '../constants/types';
 import { Colors } from '../constants/colors';
@@ -68,9 +63,7 @@ export default function MedicationDetails({
   }, [vnr]);
 
   if (!medication) {
-    return (
-      <LoadingPage />
-    );
+    return <LoadingPage />;
   }
 
   function subOpenHandler() {

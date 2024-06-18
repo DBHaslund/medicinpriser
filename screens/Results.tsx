@@ -36,7 +36,9 @@ export default function Results({ route }: ResultsProps) {
       {!loading && items.length <= 0 && (
         <View style={styles.errorBox}>
           <Text style={styles.errorHead}>Ingen resultater fundet.</Text>
-          <Text style={styles.errorText}>Tjek din indtastning og prøv igen. </Text>
+          <Text style={styles.errorText}>
+            Tjek din indtastning og prøv igen.{' '}
+          </Text>
         </View>
       )}
       <FlatList

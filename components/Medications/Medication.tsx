@@ -37,7 +37,7 @@ export default function Medication({ onClose, ...item }: MedicationProp) {
           <Text>Døgnspris</Text>
           <Text>{parseFloat(item.DDD).toFixed(2)} kr.</Text>
         </View>
-      )} 
+      )}
     </Pressable>
   );
 }

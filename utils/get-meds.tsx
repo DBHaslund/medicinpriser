@@ -55,7 +55,7 @@ export async function fetchDetails(vnr: string | string[]) {
 
         list.push(json);
       }
-      
+
       return list;
     }
   } catch (error) {

@@ -11,7 +11,7 @@ export default function Favourites() {
   const favCtx = useContext(FavMedsContext);
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     async function fetchFromDb() {
       const favs = await fetchFavs();
       const favVnrs = favs.map((fav: any) => fav.Varenummer);
@@ -19,11 +19,11 @@ export default function Favourites() {
       favCtx.setFavMeds(updatedList);
     }
     fetchFromDb();
-    setLoading(false)
+    setLoading(false);
   }, []);
 
   if (loading) {
-    return <LoadingPage />
+    return <LoadingPage />;
   }
 
   return (
