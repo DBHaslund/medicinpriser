@@ -1,17 +1,20 @@
 {
   "expo": {
     "name": "Medicinpriser",
-    "slug": "Medicinpriser",
+    "slug": "medicinpriser",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "jsEngine": "hermes",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -19,10 +22,20 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.dbhaslund.medicinpriser"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "d93b2a17-35b8-45d0-a79b-1b34d75b90a9"
+      }
+    },
+    "owner": "dbhaslund"
+  },
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-7043912194221869~7158349729"
   }
 }

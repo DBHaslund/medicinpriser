@@ -5,6 +5,7 @@ import Medication from '../components/Medications/Medication';
 import { fetchFavs } from '../utils/database';
 import { fetchDetails } from '../utils/get-meds';
 import LoadingPage from '../components/UI/LoadingPage';
+import Banner from '../components/Ads/Banner';
 
 export default function Favourites() {
   const [loading, setLoading] = useState<boolean>();
@@ -37,6 +38,7 @@ export default function Favourites() {
         keyExtractor={(item) => item.Varenummer}
         contentContainerStyle={{ width: '80%' }}
       />
+      <Banner />
     </View>
   );
 }

@@ -12,6 +12,7 @@ import Button from '../components/UI/Button';
 import SubModal from '../components/Medications/SubModal';
 import IconButton from '../components/UI/IconButton';
 import LoadingPage from '../components/UI/LoadingPage';
+import Banner from '../components/Ads/Banner';
 
 export default function MedicationDetails({
   route,
@@ -79,110 +80,115 @@ export default function MedicationDetails({
     new Date(+medication.UdgaaetDato.replace(/\D/g, '')).toLocaleDateString();
 
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.section}>
-        <Text style={styles.h2}>Indikation</Text>
-        <Text>{capitalize(medication.Indikation)}</Text>
-        <Text style={styles.h2}>Dosering</Text>
-        <Text>{capitalize(medication.Dosering)}</Text>
-        <Text style={styles.h2}>Opbevaringstemperatur</Text>
-        <Text>{medication.Opbevaringsbetingelser}</Text>
-      </View>
-      <View style={[styles.section, styles.row]}>
-        <View>
-          <Text style={styles.h2}>Styrke</Text>
-          <Text style={styles.h2}>Virksomt stof</Text>
-          <Text style={styles.h2}>Pakning</Text>
-          <Text style={styles.h2}>Firma</Text>
+    <>
+      <ScrollView style={styles.container}>
+        <View style={styles.section}>
+          <Text style={styles.h2}>Indikation</Text>
+          <Text>{capitalize(medication.Indikation)}</Text>
+          <Text style={styles.h2}>Dosering</Text>
+          <Text>{capitalize(medication.Dosering)}</Text>
+          <Text style={styles.h2}>Opbevaringstemperatur</Text>
+          <Text>{medication.Opbevaringsbetingelser}</Text>
         </View>
-        <View>
-          <Text style={styles.alignEnd}>{medication.Styrke}</Text>
-          <Text style={styles.alignEnd}>{medication.VirksomtStof}</Text>
-          <Text style={styles.alignEnd}>{medication.Pakning}</Text>
-          <Text style={styles.alignEnd}>{medication.Firma}</Text>
+        <View style={[styles.section, styles.row]}>
+          <View>
+            <Text style={styles.h2}>Styrke</Text>
+            <Text style={styles.h2}>Virksomt stof</Text>
+            <Text style={styles.h2}>Pakning</Text>
+            <Text style={styles.h2}>Firma</Text>
+          </View>
+          <View>
+            <Text style={styles.alignEnd}>{medication.Styrke}</Text>
+            <Text style={styles.alignEnd}>{medication.VirksomtStof}</Text>
+            <Text style={styles.alignEnd}>{medication.Pakning}</Text>
+            <Text style={styles.alignEnd}>{medication.Firma}</Text>
+          </View>
         </View>
-      </View>
-      <View style={[styles.section, styles.row]}>
-        <View>
-          <Text style={styles.h2}>Pris per pakke</Text>
-          <Text style={styles.h2}>Pris per enhed</Text>
-          <Text style={styles.h2}>Døgnspris (DDD)</Text>
-          <Text style={styles.h2}>Indkøbspris</Text>
-          <Text style={styles.h2}>Tilskud beregnes af</Text>
+        <View style={[styles.section, styles.row]}>
+          <View>
+            <Text style={styles.h2}>Pris per pakke</Text>
+            <Text style={styles.h2}>Pris per enhed</Text>
+            <Text style={styles.h2}>Døgnspris (DDD)</Text>
+            <Text style={styles.h2}>Indkøbspris</Text>
+            <Text style={styles.h2}>Tilskud beregnes af</Text>
+          </View>
+          <View>
+            <Text style={styles.alignEnd}>{medication.PrisPrPakning} kr.</Text>
+            <Text style={styles.alignEnd}>{medication.PrisPrEnhed} kr.</Text>
+            <Text style={styles.alignEnd}>
+              {parseFloat(medication.DDD).toFixed(2)} kr.
+            </Text>
+            <Text style={styles.alignEnd}>{medication.AIP} kr.</Text>
+            <Text style={styles.alignEnd}>
+              {medication.TilskudBeregnesAf} kr.
+            </Text>
+          </View>
         </View>
-        <View>
-          <Text style={styles.alignEnd}>{medication.PrisPrPakning} kr.</Text>
-          <Text style={styles.alignEnd}>{medication.PrisPrEnhed} kr.</Text>
-          <Text style={styles.alignEnd}>
-            {parseFloat(medication.DDD).toFixed(2)} kr.
-          </Text>
-          <Text style={styles.alignEnd}>{medication.AIP} kr.</Text>
-          <Text style={styles.alignEnd}>
-            {medication.TilskudBeregnesAf} kr.
-          </Text>
+        <View style={[styles.section, styles.row]}>
+          <View>
+            <Text>NBS speciale</Text>
+            <Text>ATC kode</Text>
+            <Text>Tilskudskode</Text>
+            <Text>Udleveringsgruppe</Text>
+            <Text>Varenummer</Text>
+          </View>
+          <View>
+            <Text style={styles.alignEnd}>
+              {medication.NbsSpeciale ? medication.NbsSpeciale : 'Ingen'}
+            </Text>
+            <Text style={styles.alignEnd}>{medication.AtcKode}</Text>
+            <Text style={styles.alignEnd}>
+              {medication.TilskudKode} - {medication.TilskudTekst}
+            </Text>
+            <Text style={styles.alignEnd}>{medication.Udleveringsgruppe}</Text>
+            <Text style={styles.alignEnd}>{medication.Varenummer}</Text>
+          </View>
         </View>
-      </View>
-      <View style={[styles.section, styles.row]}>
-        <View>
-          <Text>NBS speciale</Text>
-          <Text>ATC kode</Text>
-          <Text>Tilskudskode</Text>
-          <Text>Udleveringsgruppe</Text>
-          <Text>Varenummer</Text>
-        </View>
-        <View>
-          <Text style={styles.alignEnd}>
-            {medication.NbsSpeciale ? medication.NbsSpeciale : 'Ingen'}
-          </Text>
-          <Text style={styles.alignEnd}>{medication.AtcKode}</Text>
-          <Text style={styles.alignEnd}>
-            {medication.TilskudKode} - {medication.TilskudTekst}
-          </Text>
-          <Text style={styles.alignEnd}>{medication.Udleveringsgruppe}</Text>
-          <Text style={styles.alignEnd}>{medication.Varenummer}</Text>
-        </View>
-      </View>
-      {medication.Substitutioner.length > 0 && (
-        <View style={styles.subBox}>
-          <Button onPress={subOpenHandler}>Vis substitutioner</Button>
-          <SubModal
-            onClose={subCloseHandler}
-            visible={modalVis}
-            subs={medication.Substitutioner}
-          />
-        </View>
-      )}
+        {medication.Substitutioner.length > 0 && (
+          <View style={styles.subBox}>
+            <Button onPress={subOpenHandler}>Vis substitutioner</Button>
+            <SubModal
+              onClose={subCloseHandler}
+              visible={modalVis}
+              subs={medication.Substitutioner}
+            />
+          </View>
+        )}
 
-      <View style={styles.noticeContainer}>
-        {medication.TrafikAdvarsel && (
-          <IconItem
-            icon='warning'
-            color={Colors.warning500}
-            description='Trafikfarlig'
-          />
-        )}
-        {medication.Haandkoeb && (
-          <IconItem
-            icon='checkmark'
-            color={Colors.green}
-            description='Håndkøb'
-          />
-        )}
-        {medication.Udgaaet && (
-          <IconItem
-            icon='close-circle-outline'
-            color={Colors.warning500}
-            description={`Udgået per ${discDate}`}
-          />
-        )}
+        <View style={styles.noticeContainer}>
+          {medication.TrafikAdvarsel && (
+            <IconItem
+              icon='warning'
+              color={Colors.warning500}
+              description='Trafikfarlig'
+            />
+          )}
+          {medication.Haandkoeb && (
+            <IconItem
+              icon='checkmark'
+              color={Colors.green}
+              description='Håndkøb'
+            />
+          )}
+          {medication.Udgaaet && (
+            <IconItem
+              icon='close-circle-outline'
+              color={Colors.warning500}
+              description={`Udgået per ${discDate}`}
+            />
+          )}
+        </View>
+      </ScrollView>
+      <View>
+        <Banner />
       </View>
-    </ScrollView>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    margin: 8,
+    flex: 1,
   },
   noticeContainer: {
     flexDirection: 'row',
@@ -191,8 +197,8 @@ const styles = StyleSheet.create({
   },
   section: {
     backgroundColor: Colors.white,
-    marginHorizontal: 4,
-    marginBottom: 8,
+    marginHorizontal: 12,
+    marginTop: 12,
     padding: 8,
     borderRadius: 6,
     elevation: 2,

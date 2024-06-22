@@ -12,6 +12,7 @@ import { Colors } from '../constants/colors';
 import { FetchMeds } from '../utils/get-meds';
 
 import Medication from '../components/Medications/Medication';
+import Banner from '../components/Ads/Banner';
 
 export default function Results({ route }: ResultsProps) {
   const [items, setItems] = useState<MedicationProp[]>([]);
@@ -47,6 +48,7 @@ export default function Results({ route }: ResultsProps) {
         keyExtractor={(item) => item.Varenummer}
         contentContainerStyle={{ width: '100%' }}
       />
+      <Banner />
     </View>
   );
 }

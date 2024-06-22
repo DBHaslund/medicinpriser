@@ -12,6 +12,7 @@ import { HomeStackProps } from '../constants/types';
 import { Colors } from '../constants/colors';
 
 import Button from '../components/UI/Button';
+import Banner from '../components/Ads/Banner';
 
 export default function Home({ navigation }: HomeStackProps) {
   const [query, setQuery] = useState('');
@@ -38,6 +39,7 @@ export default function Home({ navigation }: HomeStackProps) {
           </View>
         </View>
       </ScrollView>
+      <Banner />
     </KeyboardAvoidingView>
   );
 }
