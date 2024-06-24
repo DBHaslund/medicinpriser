@@ -32,25 +32,20 @@ export type MedicationProp = {
   onClose: () => void;
 };
 
-export type StackParamsList = {
-  Home: undefined;
-  Landing: undefined;
-  Results: { query: string };
-  MedicationDetails: { vnr: string };
-};
 
-export type ResultsProps = NativeStackScreenProps<StackParamsList, 'Results'>;
-export type MedicationDetailsProps = NativeStackScreenProps<StackParamsList, 'MedicationDetails'>;
+
 
 export type TabParamsList = {
   Home: undefined;
   Settings: undefined;
   Favourites: undefined;
   Results: { query: string };
-};
-
+  MedicationDetails: { vnr: string };
+  };
+  
 export type HomeTabProps = BottomTabScreenProps<TabParamsList, 'Home'>;
-export type HomeStackProps = NativeStackScreenProps<StackParamsList, 'Home'>;
+export type ResultsProps = NativeStackScreenProps<TabParamsList, 'Results'>;
+export type MedicationDetailsProps = NativeStackScreenProps<TabParamsList, 'MedicationDetails'>;
 
 export type ButtonProps = {
   children: string;

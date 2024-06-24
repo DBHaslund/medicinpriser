@@ -1,15 +1,10 @@
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as SplashScreen from 'expo-splash-screen';
 
 import { Ionicons } from '@expo/vector-icons';
 
-import {
-  HomeStackProps,
-  StackParamsList,
-  TabParamsList,
-} from './constants/types';
+import { HomeTabProps, TabParamsList } from './constants/types';
 
 import Home from './screens/Home';
 import Favourites from './screens/Favourites';
@@ -20,59 +15,16 @@ import FavMedsContextProvider from './store/context/favMeds-context';
 import { useEffect, useState } from 'react';
 import { init } from './utils/database';
 
-const Stack = createNativeStackNavigator<StackParamsList>();
 const Tab = createBottomTabNavigator<TabParamsList>();
 
 SplashScreen.preventAutoHideAsync();
 
-function Landing() {
-  return (
-    <Tab.Navigator
-      screenOptions={{
-        headerTitleAlign: 'center',
-        tabBarHideOnKeyboard: true,
-      }}
-    >
-      <Tab.Screen
-        name='Home'
-        component={Home}
-        options={{
-          title: 'Hjem',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name='home' color={color} size={size} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name='Favourites'
-        component={Favourites}
-        options={{
-          title: 'Favoritter',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name='heart' color={color} size={size} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name='Settings'
-        component={Settings}
-        options={{
-          title: 'Indstillinger',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name='settings' color={color} size={size} />
-          ),
-        }}
-      />
-    </Tab.Navigator>
-  );
-}
-
-export default function App({ navigation }: HomeStackProps) {
+export default function App({ navigation }: HomeTabProps) {
   const [dbInit, setDbInit] = useState(false);
 
   useEffect(() => {
     init()
-      .then(async () => {
+      .then(() => {
         setDbInit(true);
       })
       .catch((err) => {
@@ -87,25 +39,60 @@ export default function App({ navigation }: HomeStackProps) {
   return (
     <FavMedsContextProvider>
       <NavigationContainer>
-        <Stack.Navigator screenOptions={{ headerTitleAlign: 'center' }}>
-          <Stack.Screen
-            name='Landing'
-            component={Landing}
-            options={{ headerShown: false }}
+        <Tab.Navigator
+          screenOptions={{
+            headerTitleAlign: 'center',
+            tabBarHideOnKeyboard: true,
+          }}
+        >
+          <Tab.Screen
+            name='Home'
+            component={Home}
+            options={{
+              title: 'Hjem',
+              tabBarIcon: ({ color, size }) => (
+                <Ionicons name='home' color={color} size={size} />
+              ),
+            }}
           />
-          <Stack.Screen
+          <Tab.Screen
+            name='Favourites'
+            component={Favourites}
+            options={{
+              title: 'Favoritter',
+              tabBarIcon: ({ color, size }) => (
+                <Ionicons name='heart' color={color} size={size} />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name='Settings'
+            component={Settings}
+            options={{
+              title: 'Indstillinger',
+              tabBarIcon: ({ color, size }) => (
+                <Ionicons name='settings' color={color} size={size} />
+              ),
+            }}
+          />
+
+          <Tab.Screen
             name='Results'
             component={Results}
-            options={{ title: 'Resultat' }}
+            options={{
+              title: 'Resultat',
+              tabBarButton: () => null,
+            }}
           />
-          <Stack.Screen
+          <Tab.Screen
             name='MedicationDetails'
             component={MedicationDetails}
             options={{
               title: 'Detaljer',
+              tabBarButton: () => null,
             }}
           />
-        </Stack.Navigator>
+        </Tab.Navigator>
       </NavigationContainer>
     </FavMedsContextProvider>
   );

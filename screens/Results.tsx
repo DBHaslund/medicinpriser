@@ -46,7 +46,6 @@ export default function Results({ route }: ResultsProps) {
         data={items}
         renderItem={(itemData) => <Medication {...itemData.item} />}
         keyExtractor={(item) => item.Varenummer}
-        contentContainerStyle={{ width: '100%' }}
       />
       <Banner />
     </View>
@@ -56,7 +55,7 @@ export default function Results({ route }: ResultsProps) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
+    marginHorizontal: 12,
     paddingVertical: 12,
   },
   errorBox: {

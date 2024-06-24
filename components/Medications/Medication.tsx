@@ -25,8 +25,8 @@ export default function Medication({ onClose, ...item }: MedicationProp) {
       onPress={detailHandler}
     >
       <View style={styles.idBox}>
-        <Text>{item.Navn}</Text>
-        <Text>{item.Styrke}</Text>
+        <Text style={styles.bolded}>{item.Navn}</Text>
+        <Text style={styles.bolded}>{item.Styrke}</Text>
       </View>
       <View>
         <Text>{item.Firma}</Text>
@@ -65,9 +65,13 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: Colors.gray200,
     marginBottom: 4,
+    paddingBottom: 4,
   },
   priceBox: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  bolded: {
+    fontWeight: 'bold',
   },
 });

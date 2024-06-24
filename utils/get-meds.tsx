@@ -1,4 +1,4 @@
-const base = 'http://api.medicinpriser.dk/v1/';
+const base = 'https://api.medicinpriser.dk/v1/';
 const namePoint = base + '/produkter/';
 const ingredientPoint = base + 'produkter/virksomtstof/';
 const detailPoint = base + 'produkter/detaljer/';

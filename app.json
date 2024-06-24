@@ -12,18 +12,17 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.bzyhas.medicinpriser"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.dbhaslund.medicinpriser"
+      "package": "com.bzyhas.medicinpriser"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -33,7 +32,8 @@
         "projectId": "d93b2a17-35b8-45d0-a79b-1b34d75b90a9"
       }
     },
-    "owner": "dbhaslund"
+    "owner": "dbhaslund",
+    "plugins": []
   },
   "react-native-google-mobile-ads": {
     "android_app_id": "ca-app-pub-7043912194221869~7158349729"
