@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as SplashScreen from 'expo-splash-screen';
@@ -5,15 +6,15 @@ import * as SplashScreen from 'expo-splash-screen';
 import { Ionicons } from '@expo/vector-icons';
 
 import { HomeTabProps, TabParamsList } from './constants/types';
+import FavMedsContextProvider from './store/context/favMeds-context';
+import { init } from './utils/database';
 
 import Home from './screens/Home';
 import Favourites from './screens/Favourites';
 import Settings from './screens/Settings';
 import Results from './screens/Results';
 import MedicationDetails from './screens/MedicationDetails';
-import FavMedsContextProvider from './store/context/favMeds-context';
-import { useEffect, useState } from 'react';
-import { init } from './utils/database';
+import BackButton from './components/UI/BackButton';
 
 const Tab = createBottomTabNavigator<TabParamsList>();
 
@@ -82,6 +83,9 @@ export default function App({ navigation }: HomeTabProps) {
             options={{
               title: 'Resultat',
               tabBarButton: () => null,
+              headerLeft: () => (
+                <BackButton route='Home' />
+              ),
             }}
           />
           <Tab.Screen
@@ -90,6 +94,9 @@ export default function App({ navigation }: HomeTabProps) {
             options={{
               title: 'Detaljer',
               tabBarButton: () => null,
+              headerLeft: () => (
+                <BackButton route='Results' />
+              ),
             }}
           />
         </Tab.Navigator>
