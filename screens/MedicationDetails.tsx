@@ -12,7 +12,7 @@ import Button from '../components/UI/Button';
 import SubModal from '../components/Medications/SubModal';
 import IconButton from '../components/UI/IconButton';
 import LoadingPage from '../components/UI/LoadingPage';
-import Banner from '../components/Ads/Banner';
+import AdBanner from '../components/Ads/AdBanner';
 
 export default function MedicationDetails({
   route,
@@ -180,7 +180,7 @@ export default function MedicationDetails({
         </View>
       </ScrollView>
       <View>
-        <Banner />
+        <AdBanner />
       </View>
     </>
   );

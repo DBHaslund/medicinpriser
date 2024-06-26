@@ -50,6 +50,7 @@ export type MedicationDetailsProps = NativeStackScreenProps<TabParamsList, 'Medi
 export type ButtonProps = {
   children: string;
   onPress: () => void;
+  style?: string[]
 };
 
 export type IconItemProps = {
@@ -58,10 +59,16 @@ export type IconItemProps = {
   description: string,
 }
 
-export interface ModalProps {
+export interface SubModalProps {
   onClose: () => void;
   visible: boolean;
   subs: MedicationProp[];
+}
+
+export interface InfoModalProps {
+  onClose: () => void;
+  visible: boolean;
+  info: {title: string, text: string};
 }
 
 export interface FavContextProps {

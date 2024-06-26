@@ -84,7 +84,7 @@ export default function App({ navigation }: HomeTabProps) {
               title: 'Resultat',
               tabBarButton: () => null,
               headerLeft: () => (
-                <BackButton route='Home' />
+                <BackButton />
               ),
             }}
           />
@@ -95,7 +95,7 @@ export default function App({ navigation }: HomeTabProps) {
               title: 'Detaljer',
               tabBarButton: () => null,
               headerLeft: () => (
-                <BackButton route='Results' />
+                <BackButton />
               ),
             }}
           />

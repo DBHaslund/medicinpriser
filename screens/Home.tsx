@@ -12,7 +12,7 @@ import { HomeTabProps } from '../constants/types';
 import { Colors } from '../constants/colors';
 
 import Button from '../components/UI/Button';
-import Banner from '../components/Ads/Banner';
+import AdBanner from '../components/Ads/AdBanner';
 
 export default function Home({ navigation }: HomeTabProps) {
   const [query, setQuery] = useState('');
@@ -23,6 +23,7 @@ export default function Home({ navigation }: HomeTabProps) {
 
   const searchHandler = async () => {
     navigation.navigate('Results', { query });
+    setQuery('');
   };
 
   return (
@@ -32,14 +33,14 @@ export default function Home({ navigation }: HomeTabProps) {
           <Text style={{ fontSize: 32 }}>Velkommen!</Text>
         </View>
         <View style={styles.content}>
-          <Text>Indtast medicin for at søge pris</Text>
+          <Text>Indtast medicin eller virksomt stof for at søge</Text>
           <View style={styles.inputContainer}>
-            <TextInput style={styles.inputText} onChangeText={queryHandler} />
+            <TextInput style={styles.inputText} onChangeText={queryHandler} value={query} />
             <Button onPress={searchHandler}>Søg</Button>
           </View>
         </View>
       </ScrollView>
-      <Banner />
+      <AdBanner />
     </KeyboardAvoidingView>
   );
 }

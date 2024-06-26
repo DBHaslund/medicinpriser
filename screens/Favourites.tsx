@@ -5,7 +5,7 @@ import Medication from '../components/Medications/Medication';
 import { fetchFavs } from '../utils/database';
 import { fetchDetails } from '../utils/get-meds';
 import LoadingPage from '../components/UI/LoadingPage';
-import Banner from '../components/Ads/Banner';
+import AdBanner from '../components/Ads/AdBanner';
 
 export default function Favourites() {
   const [loading, setLoading] = useState<boolean>();
@@ -30,7 +30,7 @@ export default function Favourites() {
   return (
     <View style={styles.container}>
       {favCtx.favMeds.length < 1 && (
-        <Text style={styles.emptyText}>No favourites added yet.</Text>
+        <Text style={styles.emptyText}>Ingen favoritter tilføjet endnu.</Text>
       )}
       <FlatList
         data={favCtx.favMeds}
@@ -38,7 +38,7 @@ export default function Favourites() {
         keyExtractor={(item) => item.Varenummer}
         contentContainerStyle={{ width: '80%' }}
       />
-      <Banner />
+      <AdBanner />
     </View>
   );
 }

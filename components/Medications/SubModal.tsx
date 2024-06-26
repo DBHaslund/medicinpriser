@@ -1,6 +1,6 @@
 import { FlatList, Modal, StyleSheet, Text, View } from 'react-native';
 
-import { MedicationProp, ModalProps } from '../../constants/types';
+import { MedicationProp, SubModalProps } from '../../constants/types';
 import { Colors } from '../../constants/colors';
 import { fetchDetails } from '../../utils/get-meds';
 
@@ -8,7 +8,7 @@ import Button from '../UI/Button';
 import Medication from './Medication';
 import { useEffect, useState } from 'react';
 
-export default function SubModal({ onClose, visible, subs }: ModalProps) {
+export default function SubModal({ onClose, visible, subs }: SubModalProps) {
   const [vnrList, setVnrList] = useState<string[]>([]);
   const [subList, setSubList] = useState<MedicationProp[]>([]);
 
