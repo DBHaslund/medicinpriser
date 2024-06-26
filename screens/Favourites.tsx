@@ -28,7 +28,7 @@ export default function Favourites() {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={styles.screen}>
       {favCtx.favMeds.length < 1 && (
         <Text style={styles.emptyText}>Ingen favoritter tilføjet endnu.</Text>
       )}
@@ -44,7 +44,7 @@ export default function Favourites() {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  screen: {
     flex: 1,
     alignItems: 'center',
   },

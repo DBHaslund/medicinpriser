@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import {
+  Alert,
   KeyboardAvoidingView,
   ScrollView,
   StyleSheet,
@@ -22,6 +23,13 @@ export default function Home({ navigation }: HomeTabProps) {
   };
 
   const searchHandler = async () => {
+    if (!query.trim()) {
+      Alert.alert('Fejl', 'Indtast for at søge.', [
+        { text: 'Okay', style: 'cancel' },
+      ]);
+      return;
+    }
+
     navigation.navigate('Results', { query });
     setQuery('');
   };
@@ -35,7 +43,11 @@ export default function Home({ navigation }: HomeTabProps) {
         <View style={styles.content}>
           <Text>Indtast medicin eller virksomt stof for at søge</Text>
           <View style={styles.inputContainer}>
-            <TextInput style={styles.inputText} onChangeText={queryHandler} value={query} />
+            <TextInput
+              style={styles.inputText}
+              onChangeText={queryHandler}
+              value={query}
+            />
             <Button onPress={searchHandler}>Søg</Button>
           </View>
         </View>
@@ -48,6 +60,7 @@ export default function Home({ navigation }: HomeTabProps) {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
+    backgroundColor: Colors.bgContent,
   },
   container: {
     flex: 1,

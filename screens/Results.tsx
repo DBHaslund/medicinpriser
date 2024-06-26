@@ -32,7 +32,7 @@ export default function Results({ route }: ResultsProps) {
   let loader = <ActivityIndicator size={32} color={Colors.primary500} />;
 
   return (
-    <View style={styles.container}>
+    <View style={styles.screen}>
       {loading && loader}
       {!loading && items.length <= 0 && (
         <View style={styles.errorBox}>
@@ -53,8 +53,9 @@ export default function Results({ route }: ResultsProps) {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  screen: {
     flex: 1,
+    backgroundColor: Colors.bgContent,
     marginHorizontal: 12,
     paddingVertical: 12,
   },

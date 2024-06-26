@@ -44,13 +44,16 @@ export default function App({ navigation }: HomeTabProps) {
           screenOptions={{
             headerTitleAlign: 'center',
             tabBarHideOnKeyboard: true,
+            tabBarStyle: {backgroundColor: 'black'},
+            
+
           }}
         >
           <Tab.Screen
             name='Home'
             component={Home}
             options={{
-              title: 'Hjem',
+              title: 'Medicinpriser',
               tabBarIcon: ({ color, size }) => (
                 <Ionicons name='home' color={color} size={size} />
               ),

@@ -19,7 +19,7 @@ export default function Settings() {
   }
 
   return (
-    <View style={styles.root}>
+    <View style={styles.screen}>
       <InfoModal
         onClose={closePrivacyModal}
         visible={privacyModalVis}
@@ -40,19 +40,20 @@ export default function Settings() {
           </Button>
         </View>
       </View>
-        <AdBanner />
+      <AdBanner />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  root: {
+  screen: {
     flex: 1,
+    backgroundColor: Colors.bgContent,
   },
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   option: {
     width: '80%',

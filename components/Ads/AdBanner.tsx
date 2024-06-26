@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import {
   BannerAd,
@@ -6,6 +7,12 @@ import {
 } from 'react-native-google-mobile-ads';
 
 export default function Banner() {
+  const [premium, setPremium] = useState(true)
+
+  if (premium) {
+    return;
+  }
+
   return (
     <View style={styles.container}>
       <BannerAd

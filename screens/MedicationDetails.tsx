@@ -81,7 +81,7 @@ export default function MedicationDetails({
 
   return (
     <>
-      <ScrollView style={styles.container}>
+      <ScrollView style={styles.screen}>
         <View style={styles.section}>
           <Text style={styles.h2}>Indikation</Text>
           <Text>{capitalize(medication.Indikation)}</Text>
@@ -187,8 +187,9 @@ export default function MedicationDetails({
 }
 
 const styles = StyleSheet.create({
-  container: {
+  screen: {
     flex: 1,
+    backgroundColor: Colors.bgContent,
   },
   noticeContainer: {
     flexDirection: 'row',
