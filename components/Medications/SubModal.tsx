@@ -27,30 +27,37 @@ export default function SubModal({ onClose, visible, subs }: SubModalProps) {
   }, [vnrList]);
 
   return (
-    <Modal animationType='slide' visible={visible}>
-      <View style={styles.container}>
-        <Text style={styles.title}>Substitutioner</Text>
-        <FlatList
-          data={subList}
-          renderItem={(itemData) => (
-            <Medication {...itemData.item} onClose={onClose} />
-          )}
-          keyExtractor={(sub) => sub.Varenummer}
-          contentContainerStyle={{ width: '100%' }}
-        />
-      </View>
-      <View style={styles.buttonContainer}>
-        <Button onPress={onClose}>Luk</Button>
-      </View>
-    </Modal>
+    <View style={styles.screen}>
+      <Modal animationType='slide' visible={visible}>
+        <View style={styles.container}>
+          <Text style={styles.title}>Substitutioner</Text>
+          <FlatList
+            data={subList}
+            renderItem={(itemData) => (
+              <Medication {...itemData.item} onClose={onClose} />
+            )}
+            keyExtractor={(sub) => sub.Varenummer}
+            contentContainerStyle={{ width: '100%' }}
+          />
+        </View>
+        <View style={styles.buttonContainer}>
+          <Button onPress={onClose}>Luk</Button>
+        </View>
+      </Modal>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  screen: {
+    backgroundColor: Colors.bgContent,
+    width: '100%',
+  },
   container: {
     flex: 1,
     width: '70%',
     alignSelf: 'center',
+    backgroundColor: Colors.bgContent,
   },
   buttonContainer: {
     alignSelf: 'center',

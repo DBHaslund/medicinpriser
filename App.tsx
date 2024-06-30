@@ -15,6 +15,8 @@ import Settings from './screens/Settings';
 import Results from './screens/Results';
 import MedicationDetails from './screens/MedicationDetails';
 import BackButton from './components/UI/BackButton';
+import { StatusBar } from 'expo-status-bar';
+import { Colors } from './constants/colors';
 
 const Tab = createBottomTabNavigator<TabParamsList>();
 
@@ -39,14 +41,17 @@ export default function App({ navigation }: HomeTabProps) {
 
   return (
     <FavMedsContextProvider>
+      <StatusBar style='light' backgroundColor={Colors.menu} />
       <NavigationContainer>
         <Tab.Navigator
           screenOptions={{
             headerTitleAlign: 'center',
             tabBarHideOnKeyboard: true,
-            tabBarStyle: {backgroundColor: 'black'},
-            
-
+            headerStyle: { backgroundColor: Colors.menu, height: 100 },
+            headerTitleStyle: { color: Colors.menuAccent },
+            tabBarStyle: { backgroundColor: Colors.menu },
+            tabBarActiveTintColor: Colors.menuActive,
+            tabBarInactiveTintColor: Colors.menuAccent,
           }}
         >
           <Tab.Screen
@@ -86,9 +91,7 @@ export default function App({ navigation }: HomeTabProps) {
             options={{
               title: 'Resultat',
               tabBarButton: () => null,
-              headerLeft: () => (
-                <BackButton />
-              ),
+              headerLeft: () => <BackButton />,
             }}
           />
           <Tab.Screen
@@ -97,9 +100,7 @@ export default function App({ navigation }: HomeTabProps) {
             options={{
               title: 'Detaljer',
               tabBarButton: () => null,
-              headerLeft: () => (
-                <BackButton />
-              ),
+              headerLeft: () => <BackButton />,
             }}
           />
         </Tab.Navigator>

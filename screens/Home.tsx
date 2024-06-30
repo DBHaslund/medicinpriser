@@ -38,10 +38,10 @@ export default function Home({ navigation }: HomeTabProps) {
     <KeyboardAvoidingView behavior='padding' style={styles.screen}>
       <ScrollView style={styles.container}>
         <View style={styles.header}>
-          <Text style={{ fontSize: 32 }}>Velkommen!</Text>
+          <Text style={styles.title}>Velkommen!</Text>
         </View>
         <View style={styles.content}>
-          <Text>Indtast medicin eller virksomt stof for at søge</Text>
+          <Text>Indtast medicin eller virksomt stof</Text>
           <View style={styles.inputContainer}>
             <TextInput
               style={styles.inputText}
@@ -70,12 +70,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 64,
   },
+  title: {
+    fontSize: 32,
+  },
   content: {
     alignItems: 'center',
     paddingVertical: 16,
     borderBottomWidth: 1,
     borderTopWidth: 1,
-    borderColor: Colors.gray200,
+    borderColor: Colors.primary500,
   },
   inputContainer: {
     alignItems: 'center',
@@ -87,7 +90,8 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     textAlign: 'center',
     borderWidth: 1,
-    borderColor: Colors.gray200,
+    borderColor: Colors.primary500,
+    borderRadius: 2,
     width: '70%',
     backgroundColor: Colors.white,
   },

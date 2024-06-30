@@ -7,7 +7,7 @@ import {
 } from 'react-native-google-mobile-ads';
 
 export default function Banner() {
-  const [premium, setPremium] = useState(true)
+  const [premium, setPremium] = useState(false)
 
   if (premium) {
     return;
