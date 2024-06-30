@@ -8,12 +8,12 @@ import {
 import { MedicationProp } from '../../constants/types';
 import { Colors } from '../../constants/colors';
 
-export default function Medication({ onClose, ...item }: MedicationProp) {
+export default function Medication({ onClose, query, ...item }: MedicationProp) {
   const navigation: NavigationProp<ParamListBase> = useNavigation();
 
   function detailHandler() {
     const vnr = item.Varenummer;
-    navigation.navigate('MedicationDetails', { vnr });
+    navigation.navigate('MedicationDetails', { vnr: vnr, query: query });
     if (onClose) {
       onClose();
     }

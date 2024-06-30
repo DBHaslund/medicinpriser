@@ -13,6 +13,7 @@ import SubModal from '../components/Medications/SubModal';
 import IconButton from '../components/UI/IconButton';
 import LoadingPage from '../components/UI/LoadingPage';
 import AdBanner from '../components/Ads/AdBanner';
+import BackButton from '../components/UI/BackButton';
 
 export default function MedicationDetails({
   route,
@@ -25,6 +26,7 @@ export default function MedicationDetails({
   const favCtx = useContext(FavMedsContext);
 
   const vnr = route.params.vnr;
+  const query = route.params.query;
 
   function favHandler() {
     if (fav && medication) {
@@ -34,6 +36,10 @@ export default function MedicationDetails({
       setFav(true);
       favCtx.addFavMed(medication);
     }
+  }
+
+  function backHandler() {
+    navigation.navigate<any>('Results', { query: query });
   }
 
   useLayoutEffect(() => {
@@ -46,6 +52,7 @@ export default function MedicationDetails({
           onPress={favHandler}
         />
       ),
+      headerLeft: () => <BackButton onBack={backHandler} />,
     });
   }, [favHandler, fav]);
 

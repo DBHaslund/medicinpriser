@@ -29,18 +29,16 @@ export type MedicationProp = {
   Haandkoeb: string;
   TilskudKode: string;
   TilskudTekst: string;
+  query: string,
   onClose: () => void;
 };
-
-
-
 
 export type TabParamsList = {
   Home: undefined;
   Settings: undefined;
   Favourites: undefined;
   Results: { query: string };
-  MedicationDetails: { vnr: string };
+  MedicationDetails: { vnr: string, query: string };
   };
   
 export type HomeTabProps = BottomTabScreenProps<TabParamsList, 'Home'>;

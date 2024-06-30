@@ -91,7 +91,6 @@ export default function App({ navigation }: HomeTabProps) {
             options={{
               title: 'Resultat',
               tabBarButton: () => null,
-              headerLeft: () => <BackButton />,
             }}
           />
           <Tab.Screen
@@ -100,7 +99,6 @@ export default function App({ navigation }: HomeTabProps) {
             options={{
               title: 'Detaljer',
               tabBarButton: () => null,
-              headerLeft: () => <BackButton />,
             }}
           />
         </Tab.Navigator>

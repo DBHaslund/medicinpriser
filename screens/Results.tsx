@@ -5,7 +5,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 
 import { MedicationProp, ResultsProps } from '../constants/types';
 import { Colors } from '../constants/colors';
@@ -13,8 +13,9 @@ import { FetchMeds } from '../utils/get-meds';
 
 import Medication from '../components/Medications/Medication';
 import AdBanner from '../components/Ads/AdBanner';
+import BackButton from '../components/UI/BackButton';
 
-export default function Results({ route }: ResultsProps) {
+export default function Results({ navigation, route }: ResultsProps) {
   const [items, setItems] = useState<MedicationProp[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -28,6 +29,16 @@ export default function Results({ route }: ResultsProps) {
     }
     fetch(query);
   }, [query]);
+
+  function backHandler() {
+    navigation.navigate('Home')
+  }
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerLeft: () => <BackButton onBack={backHandler} />,
+    });
+  }, []);
 
   let loader = <ActivityIndicator size={32} color={Colors.primary500} />;
 
@@ -44,7 +55,7 @@ export default function Results({ route }: ResultsProps) {
       )}
       <FlatList
         data={items}
-        renderItem={(itemData) => <Medication {...itemData.item} />}
+        renderItem={(itemData) => <Medication {...itemData.item} query={query} />}
         keyExtractor={(item) => item.Varenummer}
       />
       <AdBanner />
