@@ -31,7 +31,7 @@ export default function Results({ navigation, route }: ResultsProps) {
   }, [query]);
 
   function backHandler() {
-    navigation.navigate('Home')
+    navigation.navigate('Home');
   }
 
   useLayoutEffect(() => {
@@ -55,7 +55,9 @@ export default function Results({ navigation, route }: ResultsProps) {
       )}
       <FlatList
         data={items}
-        renderItem={(itemData) => <Medication {...itemData.item} query={query} />}
+        renderItem={(itemData) => (
+          <Medication {...itemData.item} query={query} />
+        )}
         keyExtractor={(item) => item.Varenummer}
       />
       <AdBanner />

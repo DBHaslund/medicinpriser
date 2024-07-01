@@ -3,11 +3,10 @@ import { Ionicons } from '@expo/vector-icons';
 import { Colors } from '../../constants/colors';
 
 interface Props {
-  onBack: () => void
+  onBack: () => void;
 }
 
 export default function BackButton({ onBack }: Props) {
-
   return (
     <Pressable onPress={onBack} style={styles.button}>
       <Ionicons

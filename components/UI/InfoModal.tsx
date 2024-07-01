@@ -11,9 +11,9 @@ export default function InfoModal({ onClose, visible, info }: InfoModalProps) {
         <Text style={styles.title}>{info.title}</Text>
         <Text>{info.text}</Text>
       </View>
-        <View style={styles.button}>
-          <Button onPress={onClose}>Tilbage</Button>
-        </View>
+      <View style={styles.button}>
+        <Button onPress={onClose}>Tilbage</Button>
+      </View>
     </Modal>
   );
 }
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     borderBottomColor: Colors.gray200,
     marginVertical: 32,
   },
-  button: { 
+  button: {
     alignSelf: 'center',
     marginBottom: 64,
   },

@@ -14,7 +14,6 @@ import Favourites from './screens/Favourites';
 import Settings from './screens/Settings';
 import Results from './screens/Results';
 import MedicationDetails from './screens/MedicationDetails';
-import BackButton from './components/UI/BackButton';
 import { StatusBar } from 'expo-status-bar';
 import { Colors } from './constants/colors';
 

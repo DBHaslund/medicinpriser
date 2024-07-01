@@ -8,7 +8,11 @@ import {
 import { MedicationProp } from '../../constants/types';
 import { Colors } from '../../constants/colors';
 
-export default function Medication({ onClose, query, ...item }: MedicationProp) {
+export default function Medication({
+  onClose,
+  query,
+  ...item
+}: MedicationProp) {
   const navigation: NavigationProp<ParamListBase> = useNavigation();
 
   function detailHandler() {

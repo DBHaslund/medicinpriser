@@ -1,9 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
+
 import { FavMedsContext } from '../store/context/favMeds-context';
-import Medication from '../components/Medications/Medication';
 import { fetchFavs } from '../utils/database';
 import { fetchDetails } from '../utils/get-meds';
+
+import Medication from '../components/Medications/Medication';
 import LoadingPage from '../components/UI/LoadingPage';
 import AdBanner from '../components/Ads/AdBanner';
 

@@ -7,7 +7,7 @@ import {
 } from 'react-native-google-mobile-ads';
 
 export default function Banner() {
-  const [premium, setPremium] = useState(false)
+  const [premium, setPremium] = useState(false);
 
   if (premium) {
     return;
@@ -25,7 +25,7 @@ export default function Banner() {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        paddingVertical: 8,
-    }
-})
+  container: {
+    paddingVertical: 8,
+  },
+});
