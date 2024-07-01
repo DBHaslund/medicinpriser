@@ -79,6 +79,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderTopWidth: 1,
     borderColor: Colors.primary500,
+    backgroundColor: '#f8f8f8',
   },
   inputContainer: {
     alignItems: 'center',

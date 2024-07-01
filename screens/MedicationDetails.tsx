@@ -39,7 +39,9 @@ export default function MedicationDetails({
   }
 
   function backHandler() {
-    navigation.navigate<any>('Results', { query: query });
+    query
+      ? navigation.navigate<any>('Results', { query: query })
+      : navigation.navigate('Favourites');
   }
 
   useLayoutEffect(() => {

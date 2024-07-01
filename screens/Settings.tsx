@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import Button from '../components/UI/Button';
 import AdBanner from '../components/Ads/AdBanner';
@@ -16,6 +16,12 @@ export default function Settings() {
   }
   function closePrivacyModal() {
     setPrivacyModalVis(false);
+  }
+
+  function removeAdsHandler() {
+    Alert.alert('Kommer snart', 'Beklager, denne funktion er ikke implementeret endnu.', [
+      { text: 'Okay', style: 'cancel' },
+    ]);
   }
 
   return (
@@ -35,7 +41,7 @@ export default function Settings() {
           Vil du støtte appen og slippe for reklamer?
         </Text>
         <View style={styles.button}>
-          <Button onPress={() => null}>
+          <Button onPress={removeAdsHandler}>
             Fjern reklamer for 10 kr. - Klik her!
           </Button>
         </View>

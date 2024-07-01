@@ -38,7 +38,6 @@ export default function Favourites() {
         data={favCtx.favMeds}
         renderItem={(itemData) => <Medication {...itemData.item} />}
         keyExtractor={(item) => item.Varenummer}
-        contentContainerStyle={{ width: '80%' }}
       />
       <AdBanner />
     </View>
@@ -48,7 +47,8 @@ export default function Favourites() {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    alignItems: 'center',
+    marginHorizontal: 12,
+    paddingVertical: 12,
   },
   emptyText: {
     marginTop: 32,
