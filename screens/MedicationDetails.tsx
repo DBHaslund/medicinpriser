@@ -28,21 +28,19 @@ export default function MedicationDetails({
   const vnr = route.params.vnr;
   const query = route.params.query;
 
-  function favHandler() {
-    if (fav && medication) {
-      setFav(false);
-      favCtx.deleteFavMed(medication.Varenummer);
-    } else if (!fav && medication) {
-      setFav(true);
-      favCtx.addFavMed(medication);
+  useEffect(() => {
+    async function fetch() {
+      const item = await fetchDetails(vnr);
+      setMedication(item);
+      navigation.setOptions({ title: item.Navn });
     }
-  }
 
-  function backHandler() {
-    query
-      ? navigation.navigate<any>('Results', { query: query })
-      : navigation.navigate('Favourites');
-  }
+    if (favCtx.favMeds.find((item) => item.Varenummer === vnr)) {
+      setFav(true);
+    }
+
+    fetch();
+  }, [vnr, fav, favCtx]);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -58,19 +56,21 @@ export default function MedicationDetails({
     });
   }, [favHandler, fav]);
 
-  useEffect(() => {
-    async function fetch() {
-      const item = await fetchDetails(vnr);
-      setMedication(item);
-      navigation.setOptions({ title: item.Navn });
-    }
-
-    if (favCtx.favMeds.find((item) => item.Varenummer === vnr)) {
+  function favHandler() {
+    if (fav && medication) {
+      setFav(false);
+      favCtx.deleteFavMed(medication.Varenummer);
+    } else if (!fav && medication) {
       setFav(true);
+      favCtx.addFavMed(medication);
     }
+  }
 
-    fetch();
-  }, [vnr]);
+  function backHandler() {
+    query
+      ? navigation.navigate<any>('Results', { query: query })
+      : navigation.navigate('Favourites');
+  }
 
   if (!medication) {
     return <LoadingPage />;
