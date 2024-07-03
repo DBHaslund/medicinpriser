@@ -42,9 +42,6 @@ export default function Favourites() {
 
   return (
     <View style={styles.screen}>
-      {favCtx.favMeds.length < 1 && (
-        <Text style={styles.emptyText}>Ingen favoritter tilføjet endnu.</Text>
-      )}
       <View style={styles.tally}>
         <View style={styles.tallyBox}>
           <Text>Samlet døgnspris:</Text>
@@ -55,6 +52,9 @@ export default function Favourites() {
           <Text style={styles.bold}>{totalPrice.toFixed(2)} kr.</Text>
         </View>
       </View>
+      {favCtx.favMeds.length < 1 && (
+        <Text style={styles.emptyText}>Ingen favoritter tilføjet endnu.</Text>
+      )}
       <FlatList
         data={favCtx.favMeds}
         renderItem={(itemData) => <Medication {...itemData.item} />}
@@ -93,6 +93,7 @@ const styles = StyleSheet.create({
   },
   emptyText: {
     marginTop: 32,
+    textAlign: 'center',
   },
   bold: {
     fontWeight: 'bold',

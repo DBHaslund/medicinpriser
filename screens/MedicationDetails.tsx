@@ -22,6 +22,7 @@ export default function MedicationDetails({
   const [medication, setMedication] = useState<MedicationProp>();
   const [modalVis, setModalVis] = useState(false);
   const [fav, setFav] = useState(false);
+  const [icon, setIcon] = useState('');
 
   const favCtx = useContext(FavMedsContext);
 
@@ -35,22 +36,24 @@ export default function MedicationDetails({
       navigation.setOptions({ title: item.Navn });
     }
 
+    fetch();
+  }, [vnr]);
+
+  useEffect(() => {
     if (favCtx.favMeds.find((item) => item.Varenummer === vnr)) {
       setFav(true);
     }
+    if (favCtx.favMeds.find((item) => item.Varenummer !== vnr)) {
+      setFav(false);
+    }
 
-    fetch();
-  }, [vnr, fav, favCtx]);
+    fav ? setIcon('heart') : setIcon('heart-outline');
+  }, [vnr, favCtx]);
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <IconButton
-          icon={fav ? 'heart' : 'heart-outline'}
-          color='red'
-          size={24}
-          onPress={favHandler}
-        />
+        <IconButton icon={icon} color='red' size={24} onPress={favHandler} />
       ),
       headerLeft: () => <BackButton onBack={backHandler} />,
     });

@@ -1,5 +1,6 @@
 import * as SQLite from 'expo-sqlite';
 
+// SQLite.deleteDatabaseSync('medicineDb');
 const db = SQLite.openDatabaseSync('medicineDb');
 
 export async function init() {
