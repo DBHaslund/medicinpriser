@@ -14,7 +14,6 @@ import IconButton from '../components/UI/IconButton';
 import LoadingPage from '../components/UI/LoadingPage';
 import AdBanner from '../components/Ads/AdBanner';
 import BackButton from '../components/UI/BackButton';
-
 export default function MedicationDetails({
   route,
   navigation,
@@ -42,12 +41,12 @@ export default function MedicationDetails({
   useEffect(() => {
     if (favCtx.favMeds.find((item) => item.Varenummer === vnr)) {
       setFav(true);
+      setIcon('heart');
     }
-    if (favCtx.favMeds.find((item) => item.Varenummer !== vnr)) {
+    if (!favCtx.favMeds.find((item) => item.Varenummer === vnr)) {
       setFav(false);
+      setIcon('heart-outline');
     }
-
-    fav ? setIcon('heart') : setIcon('heart-outline');
   }, [vnr, favCtx]);
 
   useLayoutEffect(() => {
@@ -57,7 +56,7 @@ export default function MedicationDetails({
       ),
       headerLeft: () => <BackButton onBack={backHandler} />,
     });
-  }, [favHandler, fav]);
+  }, [favHandler, backHandler, fav, icon]);
 
   function favHandler() {
     if (fav && medication) {

@@ -98,6 +98,7 @@ export default function App({ navigation }: HomeTabProps) {
             options={{
               title: 'Detaljer',
               tabBarButton: () => null,
+              unmountOnBlur: true,
             }}
           />
         </Tab.Navigator>
