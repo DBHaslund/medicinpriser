@@ -21,7 +21,7 @@ const Tab = createBottomTabNavigator<TabParamsList>();
 
 SplashScreen.preventAutoHideAsync();
 
-export default function App({ navigation }: HomeTabProps) {
+export default function App() {
   const [dbInit, setDbInit] = useState(false);
 
   useEffect(() => {
@@ -57,7 +57,7 @@ export default function App({ navigation }: HomeTabProps) {
             name='Home'
             component={Home}
             options={{
-              title: 'Medicinpriser',
+              title: 'Hjem',
               tabBarIcon: ({ color, size }) => (
                 <Ionicons name='home' color={color} size={size} />
               ),
