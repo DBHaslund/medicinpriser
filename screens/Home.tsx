@@ -41,9 +41,10 @@ export default function Home({ navigation }: HomeTabProps) {
           <Text style={styles.title}>Velkommen!</Text>
         </View>
         <View style={styles.content}>
-          <Text>Indtast medicin eller virksomt stof</Text>
+          <Text style={styles.text}>Indtast medicin eller virksomt stof</Text>
           <View style={styles.inputContainer}>
             <TextInput
+              accessibilityLabel='Søgefelt'
               style={styles.inputText}
               onChangeText={queryHandler}
               value={query}
@@ -71,7 +72,7 @@ const styles = StyleSheet.create({
     marginBottom: 64,
   },
   title: {
-    fontSize: 32,
+    fontSize: 36,
   },
   content: {
     alignItems: 'center',
@@ -94,6 +95,10 @@ const styles = StyleSheet.create({
     borderColor: Colors.primary500,
     borderRadius: 2,
     width: '70%',
+    height: 48,
     backgroundColor: Colors.white,
+  },
+  text: {
+    fontSize: 16,
   },
 });

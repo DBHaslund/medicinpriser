@@ -54,6 +54,7 @@ export default function Results({ navigation, route }: ResultsProps) {
         </View>
       )}
       <FlatList
+        accessibilityLabel='Resultatliste'
         data={items}
         renderItem={(itemData) => (
           <Medication {...itemData.item} query={query} />

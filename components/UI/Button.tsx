@@ -17,8 +17,8 @@ export default function Button({ children, onPress }: ButtonProps) {
 const styles = StyleSheet.create({
   button: {
     backgroundColor: Colors.primary500,
-    paddingHorizontal: 20,
-    paddingVertical: 8,
+    paddingHorizontal: 24,
+    paddingVertical: 12,
     borderRadius: 2,
     elevation: 2,
     shadowColor: 'black',
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   text: {
     color: Colors.white,
     textAlign: 'center',
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
   },
   pressed: {
